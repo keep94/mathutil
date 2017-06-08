@@ -89,7 +89,8 @@ among 2, 3, and 5
 ## c = mathutil.Cake(); c(n, k)
 
 mathutil.Cake computes how many pieces you can get if you cut an n dimensional
-cake k times.
+cake k times. n and k must be integers >= 0. c caches results, so it is best
+to reuse c when possible.
 
 The example below computes that if you cut a 3 dimensional cake 4 times, you
 can get up to 15 pieces.
