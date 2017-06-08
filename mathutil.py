@@ -38,3 +38,28 @@ def _unique(stream):
       last = x
       yield x
 
+
+class Cake(object):
+
+  def __init__(self):
+    self._table = [[1]]
+    self._n = 0
+    self._k = 0
+
+  def __call__(self, n, k):
+    if k > self._k:
+      for ni in xrange(self._n + 1):
+        for ki in xrange(self._k + 1, k + 1):
+          if ni == 0:
+            self._table[ni].append(1)
+          else:
+            self._table[ni].append(self._table[ni][ki-1] + self._table[ni-1][ki-1])
+      self._k = k
+    if n > self._n:
+      for ni in xrange(self._n + 1, n + 1):
+        self._table.append([1])
+        for ki in xrange(1, self._k + 1):
+          self._table[ni].append(self._table[ni][ki-1] + self._table[ni-1][ki-1])
+      self._n = n
+    return self._table[n][k]
+

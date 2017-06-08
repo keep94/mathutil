@@ -6,6 +6,52 @@ Math utilities in python
 
 This library contains miscellaneous math functions.
 
+# Theory
+
+## The cake problem
+
+The cake problem asks how many pieces can you get if you cut an n dimensional
+cake k times.  This problem can be solved using dynamic programming.
+
+Let c(n, k) be the number of pieces you get cutting an n dimensional cake k
+times.
+
+A 0 dimensional cake is just 1 piece no matter how many times it is cut, so
+c(0, k) = 1.
+
+Now to compute c(n, k);
+
+When making that kth cut in an n dimensional cake, the cross section of the
+cut will have n-1 dimensions and will have k-1 cuts in it from the previous
+k-1 cuts. So making that kth cut adds c(n-1, k-1) more pieces. To the
+c(n, k-1) pieces from the previous k-1 cuts.
+
+So c(n, k) = c(n, k-1) + c(n-1, k-1)
+
+### Another way to think of the cake problem.
+
+We claim that c(0, k) is a 0th degree polynomial of k (it is the constant 1).
+We claim that c(1, k) is a 1st degree polynomial of k.
+We claim that c(2, k) is a 2nd dgree polynomial of k etc.
+
+Thinking about our formula c(n, k) = c(n, k-1) + c(n-1, k-1) we see that
+c(3, k) is a 3rd degree polynomial of k because it is just a summation of
+the c(2, k) terms.
+
+In general c(n, k) is an nth degree polynomial of k.
+
+We know that c(n, k) is 2^k when k <= n (cutting a 3 dimensional cake 2 times
+gives 4 slices; cutting a 3 dimensional cake 3 times gives 8 slices).
+We also know that the summation of nCk as k goes from 0 to n is 2^n.
+We also know that nCk is a kth degree polynomial of n.
+nCk means n choose k, the number of ways to choose k items from n items where
+order doesn't matter.
+
+Therefore c(n, k) = kC0 + kC1 + kC2 + ... + kCn
+
+This formula makes c(n, k) be an nth degree polynomial of k and it ensures
+that c(n, k) = 2^k for k <= n
+
 # The python code
 
 ## p = mathutil.CPoly(x); p(n)
