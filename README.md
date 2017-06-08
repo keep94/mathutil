@@ -85,3 +85,16 @@ among 2, 3, and 5
 >>> u = mathutil.Ugly(2,3,5); u(16)
 25
 ```
+
+## c = mathutil.Cake(); c(n, k)
+
+mathutil.Cake computes how many pieces you can get if you cut an n dimensional
+cake k times.
+
+The example below computes that if you cut a 3 dimensional cake 4 times, you
+can get up to 15 pieces.
+
+```
+>>> c = mathutil.Cake(); c(3, 4)
+15
+```
