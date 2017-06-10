@@ -99,3 +99,19 @@ can get up to 15 pieces.
 >>> c = mathutil.Cake(); c(3, 4)
 15
 ```
+
+## p = mathutil.Partition(); p(n)
+
+mathutil.Partition is the partition function which calculates how many ways
+n can be partitioned when order doesn't matter. For example:
+
+p(4) = 5 because 4 can be partitioned 5 ways where order doesn't matter
+
+4 = 1 + 1 + 1 + 1
+4 = 1 + 1 + 2 (covers 2 + 1 + 1 and 1 + 2 + 1)
+4 = 1 + 3 (covers 3 + 1)
+4 = 2 + 2
+4 = 4
+
+n must be an integer >= 0. p caches results, so it is best to reuse p when
+possible.

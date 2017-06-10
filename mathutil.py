@@ -63,3 +63,36 @@ class Cake(object):
       self._n = n
     return self._table[n][k]
 
+
+class Partition(object):
+
+  def __init__(self):
+    self._table = [[1]]
+    self._n = 0
+
+  def __call__(self, n):
+    while n > self._n:
+      self._n += 1
+      j = self._n
+      i = 0
+      while j > 0:
+        self._table[i].append(self._compute(i, j))
+        i += 1
+        j -= 1
+      self._table.append([1])
+    return self._table[0][n]
+
+  def _compute(self, row, col):
+    if row + 1 > col:
+      return 0
+    return self._add_diagonal(row, col-row-1)
+
+  def _add_diagonal(self, row, col):
+    result = 0
+    i = row
+    j = col
+    while j >= 0:
+      result += self._table[i][j]
+      i += 1
+      j -= 1
+    return result
