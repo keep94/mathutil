@@ -96,3 +96,46 @@ class Partition(object):
       i += 1
       j -= 1
     return result
+
+
+class Indexer(object):
+
+  def __init__(self, iterator):
+    self._iterator = iterator
+    self._list = []
+
+  def __call__(self, i):
+    if i < 0:
+      raise IndexError
+    while i >= len(self._list):
+      self._list.append(self._iterator.next())
+    return self._list[i]
+
+
+def Primes(start=2):
+  if start <= 2:
+    yield 2
+    start = 3
+  else:
+    start = start / 2 * 2 + 1  #start on odd
+  sieveSize = 1000
+  while True:
+    sieve = sieveSize*[True]
+    fact = 3
+    while fact*fact < start + sieveSize*2:
+      if fact*fact >= start:
+        mult = fact*fact
+      else:
+        mult = (start + fact - 1) / (2*fact) * (2*fact) + fact
+      while mult < start + sieveSize*2:
+        sieve[(mult - start) / 2] = False
+        mult += (2*fact)
+      fact += 2
+    idx = 0
+    while idx < sieveSize:
+      if sieve[idx]:
+        yield start + 2*idx
+      idx += 1
+    start += sieveSize*2
+    if sieveSize < 1000000:
+      sieveSize *= 2

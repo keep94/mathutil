@@ -115,3 +115,32 @@ p(4) = 5 because 4 can be partitioned 5 ways where order doesn't matter
 
 n must be an integer >= 0. p caches results, so it is best to reuse p when
 possible.
+
+## mathutil.Primes(start=2)
+
+mathutil.Primes generates prime numbers in order that are greater than or equal
+to start.
+
+```
+>>> import itertools
+>>> import mathutil
+>>> list(itertools.islice(mathutil.Primes(), 5))
+[2, 3, 5, 7, 11]
+>>> list(itertools.islice(mathutil.Primes(100), 5))
+[101, 103, 107, 109, 113]
+```
+
+## mathutil.Indexer(iterator)
+
+mathutil.Indexer gets the ith element from an iterator. Indexes are 0 based.
+
+```
+>>> import mathutil
+>>> p = mathutil.Indexer(mathutil.Primes())
+>>> p(0)
+2
+>>> p(1)
+3
+>>> p(2)
+5
+```
