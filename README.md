@@ -144,3 +144,15 @@ mathutil.Indexer gets the ith element from an iterator. Indexes are 0 based.
 >>> p(2)
 5
 ```
+
+## mathutil.Happys(start=1)
+
+mathutil.Happys generates happy numbers in order that are greater than or equal
+to start.
+
+```
+>>> import itertools
+>>> import mathutil
+>>> list(itertools.islice(mathutil.Happys(), 10))
+[1, 7, 10, 13, 19, 23, 28, 31, 32, 44]
+```

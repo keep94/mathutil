@@ -139,3 +139,51 @@ def Primes(start=2):
     start += sieveSize*2
     if sieveSize < 1000000:
       sieveSize *= 2
+
+
+def _Square(x):
+  sum = 0
+  while x > 0:
+    dig = x % 10
+    sum += dig*dig
+    x /= 10
+  return sum
+
+
+class _Happy(object):
+
+  _NOT_VISITED = 0
+  _HAPPY = 1
+  _UNHAPPY = 2
+
+  def __init__(self):
+    self._cache = [self._NOT_VISITED] * 200
+    self._cache[0] = self._UNHAPPY
+    self._cache[1] = self._HAPPY
+
+  def IsHappy(self, num):
+    if num < 0:
+      return False
+    if num >= 200:
+      return self.IsHappy(_Square(num))
+    if self._cache[num] == self._HAPPY:
+      return True
+    if self._cache[num] == self._UNHAPPY:
+      return False
+
+    #If not visited assume not happy initially
+    self._cache[num] = self._UNHAPPY
+
+    result = self.IsHappy(_Square(num))
+    if result:
+       self._cache[num] = self._HAPPY
+    return result
+
+
+def Happys(start=1):
+  num = start
+  h = _Happy()
+  while True:
+    if h.IsHappy(num):
+      yield num
+    num += 1
