@@ -132,16 +132,16 @@ to start.
 
 ## mathutil.Indexer(iterator)
 
-mathutil.Indexer gets the ith element from an iterator. Indexes are 0 based.
+mathutil.Indexer gets the ith element from an iterator. Indexes are 1 based.
 
 ```
 >>> import mathutil
 >>> p = mathutil.Indexer(mathutil.Primes())
->>> p(0)
-2
 >>> p(1)
-3
+2
 >>> p(2)
+3
+>>> p(3)
 5
 ```
 

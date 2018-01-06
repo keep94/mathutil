@@ -105,6 +105,7 @@ class Indexer(object):
     self._list = []
 
   def __call__(self, i):
+    i -= 1
     if i < 0:
       raise IndexError
     while i >= len(self._list):
