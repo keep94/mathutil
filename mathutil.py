@@ -188,3 +188,19 @@ def Happys(start=1):
     if h.IsHappy(num):
       yield num
     num += 1
+
+
+def Factor(n):
+  fact = 2
+  result = []
+  while fact*fact <= n:
+    exp = 0
+    while n % fact == 0:
+      n /= fact
+      exp += 1
+    if exp > 0:
+      result.append((fact, exp))
+    fact += 1
+  if n > 1:
+    result.append((n, 1))
+  return result

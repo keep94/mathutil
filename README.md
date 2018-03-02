@@ -156,3 +156,15 @@ to start.
 >>> list(itertools.islice(mathutil.Happys(), 10))
 [1, 7, 10, 13, 19, 23, 28, 31, 32, 44]
 ```
+
+## mathutil.Factor(n)
+
+mathutil.Factor returns the prime power decomposition of n.
+
+```
+>>> import mathutil
+>>> mathutil.Factor(10)
+[(2, 1), (5, 1)]
+>>> mathutil.Factor(360)
+[(2, 3), (3, 2), (5, 1)]
+```
