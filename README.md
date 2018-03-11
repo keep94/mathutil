@@ -168,3 +168,13 @@ mathutil.Factor returns the prime power decomposition of n.
 >>> mathutil.Factor(360)
 [(2, 3), (3, 2), (5, 1)]
 ```
+
+## mathutil.Totient(n)
+
+mathutil.Totient returns Euler's totient function of n.
+
+```
+>>> import mathutil
+>>> mathutil.Totient(78)
+24
+```

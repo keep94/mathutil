@@ -204,3 +204,11 @@ def Factor(n):
   if n > 1:
     result.append((n, 1))
   return result
+
+
+def Totient(n):
+  result = n
+  for fact, _ in Factor(n):
+    result /= fact
+    result *= (fact - 1)
+  return result
