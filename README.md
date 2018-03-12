@@ -178,3 +178,15 @@ mathutil.Totient returns Euler's totient function of n.
 >>> mathutil.Totient(78)
 24
 ```
+
+## mathutil.Harshads(start=1)
+
+mathutil.Harshads generates harshad numbers in order that are greater than or
+equal to start.
+
+```
+>>> import itertools
+>>> import mathutil
+>>> list(itertools.islice(mathutil.Harshads(start=100), 10))
+[100, 102, 108, 110, 111, 112, 114, 117, 120, 126]
+```

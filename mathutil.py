@@ -212,3 +212,24 @@ def Totient(n):
     result /= fact
     result *= (fact - 1)
   return result
+
+
+def _SumDigits(n):
+  sumDigits = 0
+  while n > 0:
+    sumDigits += n % 10
+    n /= 10
+  return sumDigits
+
+
+def Harshads(start=1):
+  sumDigits = _SumDigits(start)
+  while True:
+    if start % sumDigits == 0:
+      yield start
+    start += 1
+    sumDigits += 1
+    temp = start
+    while temp % 10 == 0:
+      temp /= 10
+      sumDigits -= 9
