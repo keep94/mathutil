@@ -190,3 +190,33 @@ equal to start.
 >>> list(itertools.islice(mathutil.Harshads(start=100), 10))
 [100, 102, 108, 110, 111, 112, 114, 117, 120, 126]
 ```
+
+## spline.Spline((x1, y1), (x2, y2), ..., (xn, yn))
+
+spline.Spline returns a cubic spline that connects points (x1, y1), (x2, y2),
+...,(xn, yn). The second derivative of the returned cubic spline at x0 and xn
+is 0. The returned cubic spline is a function that takes 1 argument, x and
+returns the value of the spline at x.
+
+```
+>>> import spline
+>>> s = spline.Spline((0, 0), (1, 1), (2, 0))
+>>> s(0)
+0.0
+>>> s(1)
+1.0
+>>> s(2)
+0.0
+>>> s(0.5)
+0.6875
+>>> s(1.5)
+0.6875
+>>> s(0.1)
+0.1495
+>>> s(0.2)
+0.296
+>>> s(1.8)
+0.296
+>>> s(1.9)
+0.1495
+```
