@@ -1,6 +1,14 @@
 def Spline(*points):
-  assert(len(points) >= 2)
+  assert len(points) >= 2
   return _SplineEval(points, _SplineNormal(points))
+
+
+def Spline1(points, s0, sn):
+  assert len(points) >= 2
+  points = tuple(points)
+  s0 = float(s0)
+  sn = float(sn)
+  return _SplineEval(points, _SplineFirstDeriv(points, s0, sn))
 
 
 def _IPolyMult(prod, poly):
@@ -48,14 +56,14 @@ def _IPoly3Fit(poly3, x, y):
 
 
 def _Poly3Shift(poly3, x):
-  result = _PolyCompose(poly3, [x, 1])
+  result = _PolyCompose(poly3, [x, 1.0])
   result[3] = 0.0
   return result
 
 
 def _Spline(points, x, x2):
   assert points
-  cubic = [float(points[0][1]), x, x2, 0]
+  cubic = [float(points[0][1]), x, x2, 0.0]
   result = []
   for i in xrange(len(points)-1):
     xdiff = float(points[i+1][0]-points[i][0])
@@ -74,6 +82,16 @@ def _SplineNormal(points):
   end2nd1 = splines1[plen-1][2]
   start1st = -end2nd0 / (end2nd1-end2nd0)
   return _Spline(points, start1st, 0.0)
+
+
+def _SplineFirstDeriv(points, s0, sn):
+  splines0 = _Spline(points, s0, 0.0)
+  splines1 = _Spline(points, s0, 1.0)
+  plen = len(points)
+  end1st0 = splines0[plen-1][1]
+  end1st1 = splines1[plen-1][1]
+  start2nd = (sn - end1st0) / (end1st1 - end1st0)
+  return _Spline(points, s0, start2nd)
 
 
 class _SplineEval(object):

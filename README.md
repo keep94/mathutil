@@ -191,11 +191,11 @@ equal to start.
 [100, 102, 108, 110, 111, 112, 114, 117, 120, 126]
 ```
 
-## spline.Spline((x1, y1), (x2, y2), ..., (xn, yn))
+## spline.Spline((x0, y0), (x1, y1), ..., (xn, yn))
 
-spline.Spline returns a cubic spline that connects points (x1, y1), (x2, y2),
+spline.Spline returns a cubic spline that connects points (x0, y0), (x1, y1),
 ...,(xn, yn). The second derivative of the returned cubic spline at x0 and xn
-is 0. The returned cubic spline is a function that takes 1 argument, x and
+is 0. The returned cubic spline is a function that takes 1 argument, x, and
 returns the value of the spline at x.
 
 ```
@@ -219,4 +219,28 @@ returns the value of the spline at x.
 0.296
 >>> s(1.9)
 0.1495
+```
+
+## spline.Spline1([(x0, y0), (x1, y1),...,(xn, yn)], s0, sn)
+
+spline.Spline1 works likek spline.Spline except that the slope of the returned
+spline at x0 is s0, and the slope of the returned spline at xn is sn.
+
+```
+>>> import spline
+>>> s = spline.Spline1([(0, 0), (1, 1)], 0, 0)
+>>> s(0)
+0.0
+>>> s(0.1)
+0.028
+>>> s(0.2)
+0.104
+>>> s(0.5)
+0.5
+>>> s(0.8)
+0.896
+>>> s(0.9)
+0.972
+>>> s(1.0)
+1.0
 ```
