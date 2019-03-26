@@ -130,6 +130,18 @@ to start.
 [101, 103, 107, 109, 113]
 ```
 
+## mathutil.DecadePrimes(start=1)
+
+mathutil.DecadePrimes generates all x >= start such that
+10x + 1, 10x + 3, 10x + 7, and 10x + 9 are all prime.
+
+```
+>>> import itertools
+>>> import mathutil
+>>> list(itertools.islice(mathutil.DecadePrimes(), 5))
+[1, 10, 19, 82, 148]
+```
+
 ## mathutil.Indexer(iterator)
 
 mathutil.Indexer gets the ith element from an iterator. Indexes are 1 based.

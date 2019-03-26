@@ -142,6 +142,22 @@ def Primes(start=2):
       sieveSize *= 2
 
 
+def DecadePrimes(start=1):
+  if start < 1:
+    start = 1
+  lastDecade = 0
+  primeCount = 0
+  primes = Primes(start=10*start+1)
+  for p in primes:
+    if p / 10 == lastDecade:
+      primeCount += 1
+    else:
+      lastDecade = p / 10
+      primeCount = 1
+    if primeCount == 4:
+      yield lastDecade
+
+
 def _Square(x):
   sum = 0
   while x > 0:
